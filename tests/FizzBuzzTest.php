@@ -9,43 +9,67 @@ use PHPUnit\Framework\TestCase;
 
 final class FizzBuzzTest extends TestCase
 {
+    private fizzBuzz $fizzBuzz;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->fizzBuzz = new FizzBuzz();
+    }
 
     /**
      * @test
      */
-    public function processedIntegerNotMultipleOf5or3ReturnsTheNumber()
+    public function numberNotMultipleOfBuzzNumberOrFizzNumberReturnsTheNumber(): void
     {
-        $fizzBuzz = new FizzBuzz();
-        $result = $fizzBuzz->processNumber(1);
+        $result = $this->fizzBuzz->processNumber(1);
         $this->assertEquals(1, $result);
     }
     /**
      * @test
      */
-    public function processedIntegerMultipleOf3ReturnsFizz()
+    public function numberMultipleOfFizzNumberReturnsFizz(): void
     {
-        $fizzBuzz = new FizzBuzz();
-        $result = $fizzBuzz->processNumber(3);
+        $result = $this->fizzBuzz->processNumber(3);
         $this->assertEquals("Fizz", $result);
     }
 
     /**
     * @test
     */
-    public function processedIntegerMultipleOf5ReturnsBuzz()
+    public function numberMultipleOfBuzzNumberReturnsBuzz(): void
     {
-        $fizzBuzz = new FizzBuzz();
-        $result = $fizzBuzz->processNumber(5);
+        $result = $this->fizzBuzz->processNumber(5);
         $this->assertEquals("Buzz", $result);
     }
 
     /**
      * @test
      */
-    public function processedIntegerMultipleOf5And3ReturnsFizzBuzz()
+    public function numberMultipleOfBuzzNumberAndFizzNumberReturnsFizzBuzz(): void
     {
-        $fizzBuzz = new FizzBuzz();
-        $result = $fizzBuzz->processNumber(15);
+        $result = $this->fizzBuzz->processNumber(15);
         $this->assertEquals("FizzBuzz", $result);
     }
+
+    /**
+     * @test
+     */
+    public function numberThatHasFizzNumberReturnsFizz(): void
+    {
+        $result = $this->fizzBuzz->processNumber(132);
+        $this->assertEquals("Fizz", $result);
+    }
+
+    /**
+     * @test
+     */
+    public function numberThatHasBuzzNumberReturnsBuzz(): void
+    {
+        $result = $this->fizzBuzz->processNumber(2551);
+        $this->assertEquals("Buzz", $result);
+    }
+
+
 }
